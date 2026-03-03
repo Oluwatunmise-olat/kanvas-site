@@ -368,11 +368,33 @@ $gitops-blue: #3b82f6;
     }
 }
 
+@keyframes gitops-flow-reverse {
+    0% {
+        transform: translateX(500%);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+
+    25.001% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(500%);
+    }
+}
+
 .gitops-connector-flow--2 {
     animation-delay: 1.5s;
 }
 
 .gitops-connector-flow--3 {
+    animation-name: gitops-flow-reverse;
     animation-delay: 3s;
 }
 
