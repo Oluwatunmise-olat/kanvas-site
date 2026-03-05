@@ -32,7 +32,7 @@ clean:
 	hugo --cleanDestinationDir 
 	make site
 
-.PHONY: setup build site clean site-fast check-go docker
+.PHONY: setup build site clean site-fast check-go docker setup-claude
 
 check-go:
 	@echo "Checking if Go is installed..."
@@ -42,3 +42,13 @@ check-go:
 ## Build and run site within a Docker container
 docker:
 	docker compose watch
+
+## Set up local Claude Code configuration from contrib/claude/ templates.
+## Run once after cloning if you use Claude Code as your AI coding assistant.
+setup-claude:
+	@mkdir -p .claude/agents .claude/skills/new-section
+	@cp contrib/claude/agents/*.md .claude/agents/
+	@cp contrib/claude/skills/new-section/SKILL.md .claude/skills/new-section/
+	@cp contrib/claude/settings-template.json .claude/settings.json
+	@echo "Claude Code setup complete."
+	@echo "Set GITHUB_PERSONAL_ACCESS_TOKEN in your environment for GitHub MCP."
