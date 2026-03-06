@@ -16,7 +16,8 @@
 @import "browser";
 @import "cursors";
 @import "feedback";
-
+@import "section-transitions";
+@import "scroll-cube";
 
 body {
   background-color: $dark;      
@@ -24,6 +25,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   font-family: $font-family-base; 
+  padding-top: 90px; // navbar height
 }
 
 .logo-img {
