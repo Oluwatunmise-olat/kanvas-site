@@ -52,6 +52,13 @@ body.is-404 {
     }
   }
 
+  .error-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
   .error-cta {
     display: inline-block;
     padding: 0.85rem 2.5rem;
@@ -67,6 +74,17 @@ body.is-404 {
 
     &:hover {
       border-color: $primary;
+      color: $primary;
+    }
+  }
+
+  .error-report {
+    font-size: 0.82rem;
+    color: rgba($casper, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
       color: $primary;
     }
   }
