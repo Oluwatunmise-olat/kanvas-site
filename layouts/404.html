@@ -1,10 +1,13 @@
 {{ define "main" }}
+<script>document.body.classList.add('is-404');</script>
 <section class="error-page">
   <div class="error-page-content">
-    <h1 class="error-code">404</h1>
-    <h2 class="error-title">Page not found</h2>
-    <p class="error-message">The page you're looking for doesn't exist or has been moved.</p>
-    <a href="/" class="btn-primary error-cta">Back to Home</a>
+    <h1 class="error-heading">Page not found</h1>
+    <p class="error-subtitle">The page you're looking for doesn't exist.</p>
+    <div class="error-icon">
+      <img src="/brand/kanvas/icon-only/kanvas-icon-color.svg" alt="Kanvas" />
+    </div>
+    <a href="/" class="error-cta">Return to Kanvas</a>
   </div>
 </section>
 {{ end }}
