@@ -183,7 +183,7 @@ const initScrollPieces = () => {
 
         // Start at position, scale 1 (50px stage)
         gsap.set(anchor, { x: startX, y: startY, scale: 1 });
-        gsap.set(body, { rotateY: rotation, rotateX: Math.random() * 910 - 5 });
+        gsap.set(body, { rotateY: rotation, rotateX: Math.random() * 10 - 5 });
 
         // Fade-in as intro section enters viewport
         gsap.to(anchor, {
@@ -270,17 +270,17 @@ const initScrollPieces = () => {
             start: 'top 30%',
             once: true,
             onEnter: () => {
+                journeyTriggers.forEach(t => {
+                    if (t) {
+                        if (t.animation) t.animation.progress(1);
+                        t.kill();
+                    }
+                });
+
                 requestAnimationFrame(() => {
-                    // Kill scroll-driven journeys before taking over with time-based tweens
-                    journeyTriggers.forEach(t => {
-                        if (t) {
-                            if (t.animation) t.animation.kill();
-                            t.kill();
-                        }
-                    });
                     anchors.forEach(a => {
                         gsap.killTweensOf(a);
-                        a.style.zIndex = '100'; // above everything during swoop
+                        a.style.zIndex = '100';
                     });
                     bodies.forEach(b => gsap.killTweensOf(b));
 
@@ -292,63 +292,39 @@ const initScrollPieces = () => {
                     const finalLogoYOffset = -24;
                     const logoCenterY = logoRect.top + logoRect.height / 2 + finalLogoYOffset;
 
-                    let arrived = 0;
+                    const convergeTl = gsap.timeline({ defaults: { overwrite: true } });
+
                     introSchedule.forEach(({ pieceIdx }, order) => {
                         const anchor = anchors[pieceIdx];
                         const body = bodies[pieceIdx];
                         const svg = anchor.querySelector('svg');
                         const glow = anchor.querySelector('.scroll-piece-glow');
+                        const pieceDelay = order * 0.04;
 
                         if (glow) gsap.to(glow, { opacity: 0, duration: 0.15, overwrite: true });
                         if (svg) gsap.set(svg, { opacity: 1 });
 
-                        gsap.to(anchor, {
+                        convergeTl.to(anchor, {
                             x: logoCenterX,
                             y: logoCenterY,
                             scale: 5.6,
                             opacity: 1,
-                            duration: 0.25,
-                            delay: order * 0.045,
-                            ease: 'power2.inOut',
-                            overwrite: true,
-                            onComplete: () => {
-                                arrived++;
-                                if (arrived === introSchedule.length) {
-                                    gsap.to(anchors, {
-                                        scale: 5.72, duration: 0.14, ease: 'sine.out',
-                                        overwrite: true,
-                                        onComplete: () => {
-                                            gsap.to(anchors, {
-                                                scale: 5.6, duration: 0.2, ease: 'sine.inOut',
-                                                onComplete: () => {
-                                                    gsap.set(reunitedFloat, { opacity: 1 });
-                                                    gsap.fromTo(logoEl,
-                                                        { y: finalLogoYOffset - 40, scale: 0.94 },
-                                                        {
-                                                            y: finalLogoYOffset,
-                                                            scale: 1,
-                                                            duration: 0.9,
-                                                            ease: 'bounce.out',
-                                                            overwrite: true,
-                                                        }
-                                                    );
-                                                    anchors.forEach(a => {
-                                                        gsap.set(a, { opacity: 0 });
-                                                        a.style.zIndex = '-1';
-                                                    });
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
-                            }
-                        });
+                            duration: 0.5,
+                            ease: 'power3.inOut',
+                        }, pieceDelay);
 
-                        gsap.to(body, {
+                        convergeTl.to(body, {
                             rotateY: 0, rotateX: 0,
-                            duration: 0.5, delay: order * 0.045, ease: 'sine.inOut',
-                            overwrite: true,
-                        });
+                            duration: 0.5,
+                            ease: 'power2.inOut',
+                        }, pieceDelay);
+                    });
+
+                    convergeTl
+                    .to(reunitedFloat, { opacity: 1, duration: 0.15, ease: 'none' })
+                    .to(anchors, { opacity: 0, duration: 0.15, ease: 'none' }, '<')
+                    .add(() => {
+                        anchors.forEach(a => { a.style.zIndex = '-1'; });
                     });
                 });
             }
@@ -358,6 +334,7 @@ const initScrollPieces = () => {
 
 const initScrollAnimations = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!document.querySelector('.browser, #browserScene')) return;
 
     // ── Background Ambient Overlay ──
     const ambient = document.createElement('div');
@@ -570,7 +547,9 @@ const initVideoHandler = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     initMarquee();
-    initScrollAnimations();
+    if (document.querySelector('.browser, #browserScene')) {
+        initScrollAnimations();
+    }
     initVideoHandler();
 
     const header = document.querySelector(".site-header");
