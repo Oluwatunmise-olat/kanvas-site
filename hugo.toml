@@ -1,4 +1,4 @@
-baseURL = "http://www.kanvas.new"
+baseURL = "https://meshery-extensions.github.io/kanvas-site/"
 title = "Kanvas"
 relativeURLs = true
 canonifyurls = false
@@ -33,4 +33,4 @@ enableMissingTranslationPlaceholders = true
   logo_dark = "images/kanvas-logo-dark.svg"
   description = "Infrastructure as Design for collaborative Cloud and Kubernetesmanagement"
 
-  canonicalBaseURL = "https://www.kanvas.new"
+  canonicalBaseURL = "https://meshery-extensions.github.io/kanvas-site/"
