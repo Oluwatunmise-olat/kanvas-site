@@ -7,7 +7,6 @@ canonifyurls = false
 contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
-# Useful when translating.
 enableMissingTranslationPlaceholders = true
 
 [menu]
@@ -31,6 +30,5 @@ enableMissingTranslationPlaceholders = true
   dark-mode = true
   logo_light = "images/kanvas-logo-light.svg"
   logo_dark = "images/kanvas-logo-dark.svg"
-  description = "Infrastructure as Design for collaborative Cloud and Kubernetes management"
-
-  canonicalBaseURL = "http://www.kanvas.new"
+  description = "Kanvas empowers engineers to design, deploy, and manage cloud native infrastructure collaboratively. As a Google Workspace-like experience for Kubernetes, Kanvas transforms infrastructure management from YAML to visual intuition."
+  canonicalBaseURL = "https://www.kanvas.new"
