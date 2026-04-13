@@ -7,6 +7,7 @@ canonifyurls = false
 contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+# Useful when translating.
 enableMissingTranslationPlaceholders = true
 
 [menu]
@@ -30,5 +31,6 @@ enableMissingTranslationPlaceholders = true
   dark-mode = true
   logo_light = "images/kanvas-logo-light.svg"
   logo_dark = "images/kanvas-logo-dark.svg"
-  description = "description = "Infrastructure as Design for collaborative Cloud and Kubernetesmanagement"
+  description = "Infrastructure as Design for collaborative Cloud and Kubernetesmanagement"
+
   canonicalBaseURL = "https://www.kanvas.new"
