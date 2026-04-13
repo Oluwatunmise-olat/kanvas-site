@@ -30,5 +30,5 @@ enableMissingTranslationPlaceholders = true
   dark-mode = true
   logo_light = "images/kanvas-logo-light.svg"
   logo_dark = "images/kanvas-logo-dark.svg"
-  description = "Kanvas empowers engineers to design, deploy, and manage cloud native infrastructure collaboratively. As a Google Workspace-like experience for Kubernetes, Kanvas transforms infrastructure management from YAML to visual intuition."
+  description = "description = "Infrastructure as Design for collaborative Cloud and Kubernetesmanagement"
   canonicalBaseURL = "https://www.kanvas.new"
