@@ -678,6 +678,9 @@ $gitops-blue: #3b82f6;
                         color: #94a3b8;
                         margin: 0;
                         line-height: 1.2;
+                        @media (max-width: 1024px){
+                            margin: 10px 0;
+                        }
                     }
                 }
             }
@@ -764,7 +767,7 @@ $gitops-blue: #3b82f6;
             position: relative;
             overflow: hidden;
             @media (max-width: 1024px){
-                height: 420px; 
+                height: 380px; 
             }
 
             .canvas-grid {
@@ -1102,6 +1105,9 @@ $gitops-blue: #3b82f6;
             height: 108px;
             overflow: hidden;
             flex-shrink: 0;
+            @media (max-width: 780px){
+                height: 138px;
+            }
 
             .event-icon-box {
                 width: 44px;
@@ -1217,6 +1223,9 @@ $gitops-blue: #3b82f6;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    @media (max-width: 780px){
+                        white-space: normal;
+                    }
                 }
 
                 .event-meta {
